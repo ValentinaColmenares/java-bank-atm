@@ -1,43 +1,64 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-public class ATM { //TODO
-    public static void main(String[] args) {
-        System.out.println("Welcome to JavaBank ATM! Version control with Git.");
+public class ATM {
+    private Calculator calculator = new Calculator();
 
-        // Variables básicas
-        String accountNumber = "123456789";
-        double balance = 1500.75;
-        int pin = 1234;
-        boolean isActive = true;
-        char initial = 'A';
-        byte age = 30;
+    public void start() {
+        Scanner scanner = new Scanner(System.in);
+        boolean exit = false;
 
-        // Array de montos de transacciones
-        int[] transactionAmounts = {200, -100, 50};
-        ArrayList<String> transactions = new ArrayList<>();
-        transactions.add("Deposito");
+        while (!exit) {
+            System.out.println("Bienvenido a JavaBank ATM.");
+            System.out.println("Seleccione una operación:");
+            System.out.println("1. Realizar una transacción");
+            System.out.println("2. Usar la calculadora");
+            System.out.println("0. Salir");
+            int choice = scanner.nextInt();
 
-        // Operaciones con variables
-        balance += transactionAmounts[0]; // Depósito
-        if (balance > 0 && pin == 1234) {
-            System.out.println("Acceso Concedido");
+            switch (choice) {
+                case 1:
+                    // lógica de transacción
+                    break;
+                case 2:
+                    calculator.start();
+                    break;
+                case 0:
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Selección no válida.");
+            }
         }
-
-        // Uso de operadores
-        balance++; // Incremento
-        String status = (balance < 0) ? "Deuda" : "Crédito";
-        System.out.println("Estado de cuenta: " + status);
-
-        // if, else
-        double amountRequested = 200;
-        boolean hasFunds = balance > amountRequested;
-        String inputPin = "1234";
-        if (hasFunds && String.valueOf(pin).equals(inputPin)) {
-            System.out.println("Transacción autorizada");
-        } else {
-            System.out.println("Error en transacción");
-        }
+        scanner.close();
     }
+
+    public static void main(String[] args) {
+        ATM atm = new ATM();
+        atm.start();
+    }
+
+    private List<Account> accounts;
+
+    // Clase
+    public ATM() {
+        this.accounts = new ArrayList<>();
+    }
+
+    public void addAccount(Account account) {
+        this.accounts.add(account);
+    }
+
+    public Account getAccount(String accountNumber) {
+        for (Account account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber)) {
+                return account;
+            }
+        }
+        return null;
+    }
+
 }
