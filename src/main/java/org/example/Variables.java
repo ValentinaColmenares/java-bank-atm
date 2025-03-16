@@ -2,11 +2,8 @@ package org.example;
 
 import java.util.ArrayList;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+public class Variables {
     public static void main(String[] args) {
-
         System.out.println("Welcome to JavaBank ATM! Version control with Git.");
         int pin = 1234;
         double balance = 1500.75;
@@ -81,5 +78,15 @@ public class Main {
         balance1++; // Incremento
         String status1 = (balance1 < 0) ? "Deuda" : "Crédito";
         System.out.println("Estado de cuenta: " + status1);
+
+        // if, else
+        double amountRequested = 200;
+        boolean hasFunds = balance > amountRequested;
+        String inputPin = "1234";
+        if (hasFunds && String.valueOf(pin).equals(inputPin)) {
+            System.out.println("Transacción autorizada");
+        } else {
+            System.out.println("Error en transacción");
+        }
     }
 }
