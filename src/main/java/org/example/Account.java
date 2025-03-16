@@ -1,8 +1,15 @@
 package org.example;
 
+
+
 public class Account {
     private String accountNumber;
     private double balance;
+
+    public Account(String accountNumber, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
 
     public class InsufficientFundsException extends Exception {
         public InsufficientFundsException() {
@@ -21,14 +28,11 @@ public class Account {
         this.balance -= amount;
     }
 
-    public void mostrarSaldo() {
-        System.out.println("Saldo actual: " + this.balance);
+    public double getBalance() {
+        return balance;
     }
 
     public String getAccountNumber() {
         return accountNumber;
     }
-
-
 }
-
