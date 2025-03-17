@@ -11,6 +11,10 @@ public abstract class Account implements Authenticatable {
         this.pin = pin;
     }
 
+    public Account() {
+
+    }
+
     public class InsufficientFundsException extends Exception {
         public InsufficientFundsException() {
             super("Fondos insuficientes para realizar la operación.");

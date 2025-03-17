@@ -8,6 +8,10 @@ public class SavingsAccount extends Account { // TODO implementar otras subclase
         this.interestRate = interestRate;
     }
 
+    public SavingsAccount() {
+        super();
+    }
+
     public void applyInterest() {
         double interest = getBalance() * interestRate;
         deposit(interest);

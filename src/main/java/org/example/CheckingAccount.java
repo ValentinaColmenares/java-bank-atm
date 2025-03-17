@@ -6,6 +6,10 @@ public class CheckingAccount extends Account {
         super(accountNumber, balance, pin);
     }
 
+    public CheckingAccount() {
+
+    }
+
     @Override
     public void withdraw(double amount) throws InsufficientFundsException {
         if (amount > getBalance()) {
