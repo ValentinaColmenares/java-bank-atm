@@ -4,8 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ATM {
+public class ATM implements Authenticatable{
+
     private Calculator calculator = new Calculator();
+
+    @Override
+    public boolean authenticate(String inputPin) {
+        int pin = 1234;
+        int attempts = 0;
+        while (attempts < 3) {
+            if (String.valueOf(pin).equals(inputPin)) {
+                System.out.println("Acceso concedido");
+                return true;
+            } else {
+                attempts++;
+                System.out.println("PIN incorrecto. Intento " + attempts + " de 3.");
+            }
+        }
+        return false;
+    }
 
     public void start() {
         Scanner scanner = new Scanner(System.in);

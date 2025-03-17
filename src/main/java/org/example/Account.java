@@ -1,14 +1,14 @@
 package org.example;
 
-
-
-public class Account {
+public abstract class Account implements Authenticatable {
     private String accountNumber;
     private double balance;
+    private String pin;
 
-    public Account(String accountNumber, double initialBalance) {
+    public Account(String accountNumber, double balance, String pin) {
         this.accountNumber = accountNumber;
-        this.balance = initialBalance;
+        this.balance = balance;
+        this.pin = pin;
     }
 
     public class InsufficientFundsException extends Exception {
@@ -17,7 +17,28 @@ public class Account {
         }
     }
 
-    public void deposit(double amount) {
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public abstract void withdraw(double amount) throws InsufficientFundsException;
+    public abstract void deposit(double amount);
+
+    @Override
+    public boolean authenticate(String pin) {
+        return this.pin.equals(pin);
+    }
+}
+
+/*public void deposit(double amount) {
         this.balance += amount;
     }
 
@@ -26,13 +47,4 @@ public class Account {
             throw new InsufficientFundsException();
         }
         this.balance -= amount;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-}
+    }*/
